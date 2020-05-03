@@ -1,0 +1,33 @@
+改为switch-port
+只统计云平台交换机端口利用率
+cloud switch port
+云和数据中心分开
+
+when CLIENT_ACCEPTED {
+      if { [class match [IP::client_addr] equals class_to_ct] } {
+		pool pool_ct_only
+	} elseif { [class match [IP::client_addr] equals class_to_cnc] } {
+		pool pool_cnc_only
+	} elseif { [class match [IP::local_addr] equals CNC_class] } {
+		pool pool_CNC_Gateway
+        } elseif { [class match [IP::local_addr] equals Telcom_class] } {
+		pool pool_TEL_Gateway
+        } else {
+		pool Default_Gateway_Pool
+	 }
+ }    
+when LB_SELECTED {
+	if { [IP::addr [LB::server addr] equals 202.96.27.254] } {
+          if { [class match [IP::client_addr] equals class_to_cnc] } {
+                  snat [class match -value [IP::client_addr] equals class_to_cnc]
+             } else {
+                  snat automap
+           }
+     } elseif { [IP::addr [LB::server addr] equals 219.141.216.254] }{ 
+          if { [class match [IP::client_addr] equals class_to_ct] } {
+                    snat [class match -value [IP::client_addr] equals class_to_ct]
+             } else {
+                    snat automap
+           }
+     } 
+}
