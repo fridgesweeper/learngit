@@ -1,0 +1,20 @@
+xxx.lenovo.com
+后端服务器IP1 - 10.96.1.1:80
+后端服务器IP2 - 10.96.1.2:80
+
+前端服务IP - 10.1.1.1:80
+
+
+
+
+
+
+xxx.lenovo.com
+后端服务器IP1 - 10.96.1.1:443
+后端服务器IP2 - 10.96.1.2:443
+
+前端服务IP - 10.1.1.1:443
+
+Source of: 10.241.105.2/24, 10.241.106.0/24, 10.241.107.0/24
+Destination: endpoint-prod.us-east-1.cloudistics.com OR endpoint-prod.eu-west-1.cloudistics.com TCP 5672, 5673
+ignite-proxy.cloudistics.com TCP 22
